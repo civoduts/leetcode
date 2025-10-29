@@ -28,14 +28,14 @@ def twoSum(nums: list[int], start: int, target: int) -> list[list[int]]:
 
 class Solution:
     def threeSum(self, nums: list[int]) -> list[list[int]]:
-        sorted_nums = sorted(nums)
         triplets = []
+        nums.sort()
 
-        for i in range(len(sorted_nums) - 2):
-            num = sorted_nums[i]
+        for i in range(len(nums) - 2):
+            num = nums[i]
 
             # we already found this solution, skip duplicate targets
-            if i > 0 and num == sorted_nums[i - 1]:
+            if i > 0 and num == nums[i - 1]:
                 continue
 
             # the list is sorted and non-decreasing
@@ -44,7 +44,7 @@ class Solution:
                 break
 
             # a + b = -num
-            res = twoSum(sorted_nums, i + 1, -num)
+            res = twoSum(nums, i + 1, -num)
             triplets.extend(res)
 
         return triplets
