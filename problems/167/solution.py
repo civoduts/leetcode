@@ -22,5 +22,3 @@ def bin_search(
         else:
             start = mid + 1
     return -1
-
-Solution().twoSum([2,3,4], 6)
