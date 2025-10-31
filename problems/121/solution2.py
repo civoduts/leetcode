@@ -4,6 +4,10 @@ class Solution:
         max_profit = 0
 
         for p in prices:
-            min_price = min(min_price, p)
-            max_profit = max(max_profit, p - min_price)
+            if min_price > p:
+                min_price = p
+            else:
+                profit = p - min_price
+                if max_profit < profit:
+                    max_profit = profit
         return max_profit
