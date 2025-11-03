@@ -9,6 +9,5 @@ class Solution:
                 l += 1
             best = max(best, r - l + 1)
             seen.add(s[r])
-            r += 1
 
         return best
