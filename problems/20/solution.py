@@ -9,7 +9,7 @@ class Solution:
             if ch in BRACKET_PAIRS:
                 stack.append(ch)
             elif ch in CLOSING_BRACKETS:
-                if len(stack) == 0:
+                if not stack:
                     return False
                 if BRACKET_PAIRS[stack.pop()] != ch:
                     return False
