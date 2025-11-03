@@ -6,6 +6,6 @@ class Solution:
 
         for i in range(1, n):
             prefix[i] *= prefix[i - 1] * nums[i - 1]
-            suffix[n - i - 1] *= suffix[n - i] * nums[n - i]
+            suffix[n - 1 - i] *= suffix[n - i] * nums[n - i]
 
         return [prefix[i] * suffix[i] for i in range(n)]
