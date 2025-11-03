@@ -11,8 +11,8 @@ class Solution:
 
             if total_time <= h:
                 k_min = min(k_min, k)
-                r = k - 1
+                r = k - 1 # slow down, we got time
             elif total_time > h:
-                l = k + 1
+                l = k + 1 # eat faster
 
         return k_min
