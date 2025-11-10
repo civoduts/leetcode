@@ -6,20 +6,20 @@ import java.util.List;
 import java.util.Map;
 
 public class Solution {
-  private final int UNVISITED = 0, VISITING = 1, DONE = 2;
+  private static final int UNVISITED = 0, VISITING = 1, DONE = 2;
 
-  private boolean dfs(int course, Map<Integer, List<Integer>> graph, int[] state) {
-    if (state[course] == VISITING) return false;
-    if (state[course] == DONE) return true;
+  private boolean hasCycleFrom(int course, Map<Integer, List<Integer>> graph, int[] state) {
+    if (state[course] == VISITING) return true;
+    if (state[course] == DONE) return false;
 
     state[course] = VISITING;
     if (graph.containsKey(course)) {
       for (int prereq : graph.get(course)) {
-        if (!dfs(prereq, graph, state)) return false;
+        if (!hasCycleFrom(prereq, graph, state)) return true;
       }
     }
     state[course] = DONE;
-    return true;
+    return false;
   }
 
   public boolean canFinish(int numCourses, int[][] prerequisites) {
@@ -37,7 +37,7 @@ public class Solution {
     }
 
     for (int c = 0; c < numCourses; c++) {
-      if (state[c] == UNVISITED && !dfs(c, graph, state)) {
+      if (state[c] == UNVISITED && !hasCycleFrom(c, graph, state)) {
         return false;
       }
     }
