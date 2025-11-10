@@ -6,7 +6,6 @@ class Solution:
         if not board or not board[0]:
             return
         rows, cols = len(board), len(board[0])
-        dirs = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
         queue = deque()
 
