@@ -6,32 +6,33 @@ class Solution:
         rows, cols = len(heights), len(heights[0])
         dirs = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
-        def dfs(starts: list[tuple[int, int]]) -> set[tuple[int, int]]:
-            seen = set(starts)
-            stack = list(starts)
+        def dfs(initial_cells: set[tuple[int, int]]) -> set[tuple[int, int]]:
+            seen = set(initial_cells)
+            stack = list(initial_cells)
 
             while stack:
                 r, c = stack.pop()
+
                 for dr, dc in dirs:
                     rr = r + dr
                     cc = c + dc
 
+                    # out of bounds or already seen
                     if min(rr, cc) < 0 or rr >= rows or cc >= cols or (rr, cc) in seen:
                         continue
-                    if heights[rr][cc] < heights[r][c]:
+                    # traverse the grid until we hit the tallest cell
+                    if heights[r][c] > heights[rr][cc]:
                         continue
 
-                    seen.add((rr, cc))
                     stack.append((rr, cc))
-            
+                    seen.add((rr, cc))
+
             return seen
 
-        pacific_starts = {(0, c) for c in range(cols)}
-        pacific_starts |= {(r, 0) for r in range(rows)}
-        atlantic_starts = {(rows - 1, c) for c in range(cols)}
-        atlantic_starts |= {(r, cols - 1) for r in range(rows)}
+        pacific = {(0, c) for c in range(cols)}
+        pacific |= {(r, 0) for r in range(1, rows)}
+        atlantic = {(rows - 1, c) for c in range(cols)}
+        atlantic |= {(r, cols - 1) for r in range(rows - 1)}
 
-        pac = dfs(pacific_starts)
-        atl = dfs(atlantic_starts)
-
-        return [[r, c] for r, c in (pac & atl)]
+        valid_cells = dfs(pacific) & dfs(atlantic)
+        return [[r, c] for r, c in valid_cells]
