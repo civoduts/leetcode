@@ -6,7 +6,7 @@ class Solution:
         graph = defaultdict(list)
 
         for course, prereq in prerequisites:
-            graph[prereq].append(course)
+            graph[course].append(prereq)
 
         UNVISITED, VISITING, DONE = 0, 1, 2
         state = [UNVISITED] * numCourses
