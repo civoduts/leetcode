@@ -27,6 +27,7 @@ public class Solution {
       flip(row, 0, board, queue);
       flip(row, cols - 1, board, queue);
     }
+
     for (int col = 0; col < cols; col++) {
       flip(0, col, board, queue);
       flip(rows - 1, col, board, queue);
@@ -37,6 +38,7 @@ public class Solution {
       for (int[] d : DIRS) {
         int nr = curr.row() + d[0];
         int nc = curr.col() + d[1];
+
         flip(nr, nc, board, queue);
       }
     }
@@ -51,8 +53,7 @@ public class Solution {
       }
     }
   }
-
-  private record Cell(int row, int col) {
-  }
 }
 
+record Cell(int row, int col) {
+}
