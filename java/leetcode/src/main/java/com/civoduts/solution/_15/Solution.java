@@ -18,7 +18,7 @@ public class Solution {
 
       int j = i + 1, k = nums.length - 1;
       while (j < k) {
-        int sum = nums[i] + nums[j] + nums[k];
+        long sum = nums[i] + nums[j] + nums[k];
         if (sum > 0)
           k--;
         else if (sum < 0)
