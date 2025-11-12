@@ -18,7 +18,7 @@ public class Solution2 {
       int prereq = pair[1];
 
       adj.get(prereq).add(course);
-      indegrees[course] += 1;
+      indegrees[course]++;
     }
 
     Queue<Integer> queue = new ArrayDeque<>();
