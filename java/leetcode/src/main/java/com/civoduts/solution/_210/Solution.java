@@ -28,10 +28,10 @@ public class Solution {
     }
 
     int[] order = new int[numCourses];
-    int cnt = 0;
+    int done = 0;
     while (!queue.isEmpty()) {
       int course = queue.poll();
-      order[cnt++] = course;
+      order[done++] = course;
 
       for (Integer nei : adj.get(course)) {
         if (--indegrees[nei] == 0)
@@ -39,6 +39,6 @@ public class Solution {
       }
     }
 
-    return cnt == numCourses ? order : new int[0];
+    return done == numCourses ? order : new int[0];
   }
 }
