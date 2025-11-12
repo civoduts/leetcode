@@ -7,7 +7,11 @@ import java.util.Queue;
 
 public class Solution2 {
 
-  private void visitGraph(Queue<Integer> queue, List<List<Integer>> adj, boolean[] visited) {
+  private void visitGraph(int start, List<List<Integer>> adj, boolean[] visited) {
+    Queue<Integer> queue = new ArrayDeque<>();
+    visited[start] = true;
+    queue.offer(start);
+
     while (!queue.isEmpty()) {
       int node = queue.poll();
 
@@ -38,15 +42,12 @@ public class Solution2 {
     }
 
     boolean[] visited = new boolean[n];
-    Queue<Integer> queue = new ArrayDeque<>();
 
     int components = 0;
-    for (int i = 0; i < n; i++) {
-      if (!visited[i]) {
+    for (int node = 0; node < n; node++) {
+      if (!visited[node]) {
         components++;
-        visited[i] = true;
-        queue.offer(i);
-        visitGraph(queue, adj, visited);
+        visitGraph(node, adj, visited);
       }
     }
 
