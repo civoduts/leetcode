@@ -1,6 +1,5 @@
 package com.civoduts.solution._261;
 
-import java.util.*;
 
 class DSU {
   private final int[] parent;
@@ -15,10 +14,6 @@ class DSU {
       parent[i] = i;
       size[i] = 1;
     }
-  }
-
-  public int[] getParent() {
-    return parent;
   }
 
   public int getComponents() {
