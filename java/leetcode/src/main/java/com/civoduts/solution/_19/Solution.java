@@ -21,7 +21,7 @@ public class Solution {
 
     head = reverse(head);
     ListNode prev = head;
-    while (--n - 1 > 0) {
+    for (int i = 1; i < n - 1; i++) {
       prev = prev.next;
     }
     prev.next = prev.next.next;
