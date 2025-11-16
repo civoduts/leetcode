@@ -13,11 +13,11 @@ public class Solution2 {
   // two-pass
   public ListNode removeNthFromEnd(ListNode head, int n) {
     int len = length(head);
-    int toRemove = len - (n - 1); // 1-indexed
+    int steps = len - n;
     ListNode dummy = new ListNode(0, head);
     ListNode prev = dummy;
 
-    while (--toRemove > 0) {
+    while (steps-- > 0) {
       prev = prev.next;
     }
     prev.next = prev.next.next;
