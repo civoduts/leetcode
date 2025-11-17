@@ -13,7 +13,7 @@ public class Solution2 {
   // two-pass
   public ListNode removeNthFromEnd(ListNode head, int n) {
     int len = length(head);
-    int steps = len - n;
+    int steps = len - n; // steps from dummy before the one to delete
     ListNode dummy = new ListNode(0, head);
     ListNode prev = dummy;
 
