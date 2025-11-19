@@ -15,7 +15,6 @@ public class Solution {
       groups.computeIfAbsent(anagram(s), _ -> new ArrayList<>()).add(s);
     }
 
-    List<List<String>> ret = new ArrayList<>();
     return new ArrayList<>(groups.values());
   }
 }
