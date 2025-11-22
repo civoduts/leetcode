@@ -88,25 +88,6 @@ public class LRUCache {
     if (tail == null)
       tail = item;
   }
-
-  private void updateRecency(ListNode item) {
-    if (head != item && tail != item) {
-      detach(item);
-      moveToHead(item);
-    }
-    else if (tail == item) {
-      ListNode oldPrev = item.getPrev();
-      if (head != item) {
-        head.setPrev(item);
-        item.setNext(head);
-        oldPrev.setNext(null);
-        tail = oldPrev;
-      }
-
-      item.setPrev(null);
-      head = item;
-    }
-  }
 }
 
 class ListNode {
