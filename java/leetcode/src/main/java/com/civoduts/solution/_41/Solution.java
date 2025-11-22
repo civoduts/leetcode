@@ -11,7 +11,7 @@ public class Solution {
       seen.add(n);
     }
 
-    int candidate = 0;
+    int candidate = 1;
     while (seen.contains(candidate))
       candidate++;
     return candidate;
