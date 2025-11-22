@@ -4,6 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LRUCache {
+  private static class ListNode {
+    final int key;
+    int value;
+    ListNode prev, next;
+
+    public ListNode(int key, int value) {
+      this.key = key;
+      this.value = value;
+    }
+  }
+
   private ListNode head, tail;
   private final Map<Integer, ListNode> cache;
   private final int maxCap;
@@ -20,19 +31,19 @@ public class LRUCache {
       return -1;
 
     moveToHead(item);
-    return item.getValue();
+    return item.value;
   }
 
   public void put(int key, int value) {
     ListNode item = cache.get(key);
     if (item != null) {
-      item.setValue(value);
+      item.value = value;
       moveToHead(item);
       return;
     }
 
     if (cache.size() == maxCap) {
-      cache.remove(tail.getKey()); // evict least used
+      cache.remove(tail.key); // evict least used
       removeTail();
     }
 
@@ -45,9 +56,9 @@ public class LRUCache {
     if (tail == null)
       return;
 
-    if (tail.getPrev() != null) {
-      tail.getPrev().setNext(null);
-      tail = tail.getPrev();
+    if (tail.prev != null) {
+      tail.prev.next = null;
+      tail = tail.prev;
     }
     else { // if maxCap = 1
       head = null; // tail = head case; set the head and the tail below
@@ -63,68 +74,29 @@ public class LRUCache {
   }
 
   private void detach(ListNode item) {
-    ListNode oldPrev = item.getPrev(), oldNext = item.getNext();
+    ListNode oldPrev = item.prev, oldNext = item.next;
 
     if (oldPrev != null)
-      oldPrev.setNext(oldNext);
+      oldPrev.next = oldNext;
     else // we were head
       head = oldNext;
 
     if (oldNext != null)
-      oldNext.setPrev(oldPrev);
+      oldNext.prev = oldPrev;
     else // we were tail
       tail = oldPrev;
 
-    item.setPrev(null);
-    item.setNext(null);
+    item.prev = null;
+    item.next = null;
   }
 
   private void addToHead(ListNode item) {
-    item.setNext(head);
-    item.setPrev(null);
+    item.next = head;
+    item.prev = null;
     if (head != null)
-      head.setPrev(item);
+      head.prev = item;
     head = item;
     if (tail == null)
       tail = item;
-  }
-}
-
-class ListNode {
-  private final int key;
-  private int value;
-  private ListNode prev, next;
-
-  public Integer getKey() {
-    return key;
-  }
-
-  public int getValue() {
-    return value;
-  }
-
-  public void setValue(int value) {
-    this.value = value;
-  }
-
-  public ListNode getNext() {
-    return next;
-  }
-
-  public void setNext(ListNode next) {
-    this.next = next;
-  }
-
-  public ListNode getPrev() {
-    return prev;
-  }
-
-  public void setPrev(ListNode prev) {
-    this.prev = prev;
-  }
-
-  public ListNode(int key, int value) {
-    this.key = key;
-    this.value = value;
   }
 }
