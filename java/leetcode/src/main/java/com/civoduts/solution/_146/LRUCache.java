@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LRUCache {
-  private final Map<Integer, ListNode> cache;
   private ListNode head, tail;
+  private final Map<Integer, ListNode> cache;
   private final int maxCap;
 
   public LRUCache(int capacity) {
