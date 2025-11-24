@@ -6,16 +6,21 @@ import java.util.Deque;
 
 public class Solution2 {
   static class TrackingTreeNode {
-    private final TreeNode treeNode;
-    private final int maxSoFar;
+    final TreeNode treeNode;
+    final int maxOnPath;
 
-    public TrackingTreeNode(TreeNode treeNode, int maxSoFar) {
+    public TrackingTreeNode(TreeNode root) {
+      this.treeNode = root;
+      this.maxOnPath = root.val;
+    }
+
+    public TrackingTreeNode(TreeNode treeNode, int maxOnPath) {
       this.treeNode = treeNode;
-      this.maxSoFar = maxSoFar;
+      this.maxOnPath = maxOnPath;
     }
 
     public boolean isGoodNode() {
-      return treeNode.val >= maxSoFar;
+      return treeNode.val >= maxOnPath;
     }
 
     public TrackingTreeNode createLeft() {
@@ -24,7 +29,7 @@ public class Solution2 {
 
       return new TrackingTreeNode(
         treeNode.left,
-        Math.max(maxSoFar, treeNode.val)
+        Math.max(maxOnPath, treeNode.left.val)
       );
     }
 
@@ -34,7 +39,7 @@ public class Solution2 {
 
       return new TrackingTreeNode(
         treeNode.right,
-        Math.max(maxSoFar, treeNode.val)
+        Math.max(maxOnPath, treeNode.right.val)
       );
     }
   }
@@ -43,24 +48,21 @@ public class Solution2 {
     if (root == null)
       return 0;
 
-    int good = 1;
+    int good = 0;
     Deque<TrackingTreeNode> queue = new ArrayDeque<>();
-    queue.add(new TrackingTreeNode(root, Integer.MIN_VALUE));
+    queue.add(new TrackingTreeNode(root));
 
     while (!queue.isEmpty()) {
       TrackingTreeNode parent = queue.poll();
 
-      TrackingTreeNode left = parent.createLeft();
-      if (left != null) {
-        good += left.isGoodNode() ? 1 : 0;
-        queue.offer(left);
-      }
+      if (parent.isGoodNode())
+        good++;
 
-      TrackingTreeNode right = parent.createRight();
-      if (right != null) {
-        good += right.isGoodNode() ? 1 : 0;
+      TrackingTreeNode left = parent.createLeft(), right = parent.createRight();
+      if (left != null)
+        queue.offer(left);
+      if (right != null)
         queue.offer(right);
-      }
     }
 
     return good;
