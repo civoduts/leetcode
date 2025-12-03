@@ -20,6 +20,8 @@ public class Solution {
         if (node.right != null) queue.offer(node.right);
         if (node.left != null) queue.offer(node.left);
 
+        // enqueue right child first, so the next level will be visited right->left.
+        // the first node we poll in this level the rightmost one.
         if (i == 0) ans.add(node.val);
       }
     }
