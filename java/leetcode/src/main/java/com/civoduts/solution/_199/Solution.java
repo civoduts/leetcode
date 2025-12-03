@@ -15,15 +15,13 @@ public class Solution {
     List<Integer> ans = new ArrayList<>();
     while (!queue.isEmpty()) {
       int size = queue.size();
-      int last = -1;
       for (int i = 0; i < size; i++) {
         TreeNode node = queue.poll();
-        last = node.val;
-
-        if (node.left != null) queue.offer(node.left);
         if (node.right != null) queue.offer(node.right);
+        if (node.left != null) queue.offer(node.left);
+
+        if (i == 0) ans.add(node.val);
       }
-      ans.add(last);
     }
 
     return ans;
