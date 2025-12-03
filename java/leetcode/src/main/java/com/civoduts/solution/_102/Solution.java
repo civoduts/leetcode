@@ -1,4 +1,4 @@
-package _102;
+package com.civoduts.solution._102;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
