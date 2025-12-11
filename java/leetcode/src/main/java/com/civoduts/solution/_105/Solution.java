@@ -45,7 +45,7 @@ public class Solution {
       inorderMap,
       preorder,
       0, preorder.length - 1,
-      0, preorder.length - 1
+      0, inorder.length - 1
     );
   }
 }
