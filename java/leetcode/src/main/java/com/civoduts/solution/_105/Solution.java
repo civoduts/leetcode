@@ -8,12 +8,10 @@ public class Solution {
     Map<Integer, Integer> inorderMap,
     int[] preorder,
     int pStart,
-    int pEnd,
     int iStart,
     int iEnd
   ) {
     if (iStart > iEnd) return null;
-    if (pStart > pEnd) return null;
 
     int rootVal = preorder[pStart];
     int rootIndex = inorderMap.get(rootVal);
@@ -22,12 +20,12 @@ public class Solution {
     TreeNode node = new TreeNode(rootVal);
     node.left = build(
       inorderMap, preorder,
-      pStart + 1, pStart + leftSize,
+      pStart + 1,
       iStart, rootIndex - 1
     );
     node.right = build(
       inorderMap, preorder,
-      pStart + leftSize + 1, pEnd,
+      pStart + leftSize + 1,
       rootIndex + 1, iEnd
     );
 
@@ -41,7 +39,7 @@ public class Solution {
     return build(
       inorderMap,
       preorder,
-      0, preorder.length - 1,
+      0,
       0, inorder.length - 1
     );
   }
