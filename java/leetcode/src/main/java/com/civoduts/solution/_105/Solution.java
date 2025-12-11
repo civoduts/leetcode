@@ -12,10 +12,8 @@ public class Solution {
     int iStart,
     int iEnd
   ) {
-    if (iStart > iEnd)
-      return null;
-    if (pStart > pEnd)
-      return null;
+    if (iStart > iEnd) return null;
+    if (pStart > pEnd) return null;
 
     int rootVal = preorder[pStart];
 
