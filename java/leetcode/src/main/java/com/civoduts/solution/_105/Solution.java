@@ -16,21 +16,20 @@ public class Solution {
     if (pStart > pEnd) return null;
 
     int rootVal = preorder[pStart];
-
-    int iRootIndx = inorderMap.get(rootVal);
-    int iLeftStart = iStart;
-    int iLeftEnd = iRootIndx - 1;
-    int iRightStart = iRootIndx + 1;
-    int iRightEnd = iEnd;
-
-    int pLeftStart = pStart + 1;
-    int pLeftEnd = pLeftStart + (iLeftEnd - iLeftStart);
-    int pRightStart = pLeftEnd + 1;
-    int pRightEnd = pEnd;
+    int rootIndex = inorderMap.get(rootVal);
+    int leftSize = rootIndex - iStart;
 
     TreeNode node = new TreeNode(rootVal);
-    node.left = build(inorderMap, preorder, pLeftStart, pLeftEnd, iLeftStart, iLeftEnd);
-    node.right = build(inorderMap, preorder, pRightStart, pRightEnd, iRightStart, iRightEnd);
+    node.left = build(
+      inorderMap, preorder,
+      pStart + 1, pStart + leftSize,
+      iStart, rootIndex - 1
+    );
+    node.right = build(
+      inorderMap, preorder,
+      pStart + leftSize + 1, pEnd,
+      rootIndex + 1, iEnd
+    );
 
     return node;
   }
