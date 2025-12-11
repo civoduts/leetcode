@@ -6,7 +6,7 @@ import java.util.List;
 public class Solution {
   private void backtrack(
     int[] nums,
-    boolean[] chosen,
+    boolean[] chosen, // high iq move (no HashSet needed)
     List<Integer> perm,
     List<List<Integer>> ret
   ) {
