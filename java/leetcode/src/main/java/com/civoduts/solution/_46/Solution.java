@@ -6,7 +6,7 @@ import java.util.List;
 public class Solution {
   private void backtrack(
     int[] nums,
-    boolean[] chosen, // high iq move (no HashSet needed)
+    boolean[] seen, // high iq move (no HashSet needed)
     List<Integer> perm,
     List<List<Integer>> ret
   ) {
@@ -16,14 +16,14 @@ public class Solution {
     }
 
     for (int i = 0; i < nums.length; i++) {
-      if (chosen[i])
+      if (seen[i])
         continue;
 
       perm.add(nums[i]);
-      chosen[i] = true;
-      backtrack(nums, chosen, perm, ret);
+      seen[i] = true;
+      backtrack(nums, seen, perm, ret);
       perm.removeLast();
-      chosen[i] = false;
+      seen[i] = false;
     }
   }
 
