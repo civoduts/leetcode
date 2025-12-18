@@ -1,4 +1,4 @@
-package com.civoduts.solution.lol._853;
+package com.civoduts.solution._853;
 
 import java.util.Arrays;
 
