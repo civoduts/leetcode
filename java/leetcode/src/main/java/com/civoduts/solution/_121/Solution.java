@@ -6,9 +6,12 @@ public class Solution {
     int minPrice = Integer.MAX_VALUE;
 
     for (int price : prices) {
-      int profit = price - minPrice;
-      maxProfit = Math.max(maxProfit, profit);
-      minPrice = Math.min(minPrice, price);
+      if (price < minPrice) {
+        minPrice = price;
+      }
+      else {
+        maxProfit = Math.max(maxProfit, price - minPrice);
+      }
     }
 
     return maxProfit;
