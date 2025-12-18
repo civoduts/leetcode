@@ -9,7 +9,9 @@ public class Solution {
       if (nums[mid] == target) {
         return mid;
       }
-      else if (nums[mid] < nums[high]) {
+
+      // right side is sorted
+      if (nums[mid] < nums[high]) {
         if (nums[mid] < target && target <= nums[high]) {
           low = mid + 1;
         }
@@ -17,6 +19,7 @@ public class Solution {
           high = mid - 1;
         }
       }
+      // left side is sorted
       else {
         if (nums[low] <= target && target < nums[mid]) {
           high = mid - 1;
