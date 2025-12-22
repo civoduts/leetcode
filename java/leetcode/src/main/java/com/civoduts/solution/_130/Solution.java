@@ -13,7 +13,7 @@ public class Solution {
     {0, -1}, {0, 1}
   };
 
-  private void flip(int row, int col, char[][] board, Deque<Cell> queue) {
+  private void mark(int row, int col, char[][] board, Deque<Cell> queue) {
     int rows = board.length, cols = board[0].length;
     if (0 <= row && row < rows && 0 <= col && col < cols && board[row][col] == O_CELL) {
       board[row][col] = BORDER_O_CELL;
@@ -28,13 +28,13 @@ public class Solution {
     Deque<Cell> queue = new ArrayDeque<>();
 
     for (int row = 0; row < rows; row++) {
-      flip(row, 0, board, queue);
-      flip(row, cols - 1, board, queue);
+      mark(row, 0, board, queue);
+      mark(row, cols - 1, board, queue);
     }
 
     for (int col = 0; col < cols; col++) {
-      flip(0, col, board, queue);
-      flip(rows - 1, col, board, queue);
+      mark(0, col, board, queue);
+      mark(rows - 1, col, board, queue);
     }
 
     while (!queue.isEmpty()) {
@@ -43,7 +43,7 @@ public class Solution {
         int nr = curr.row() + d[0];
         int nc = curr.col() + d[1];
 
-        flip(nr, nc, board, queue);
+        mark(nr, nc, board, queue);
       }
     }
 
