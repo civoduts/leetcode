@@ -14,11 +14,15 @@ public class Solution {
   };
 
   private void mark(int row, int col, char[][] board, Deque<Cell> queue) {
-    int rows = board.length, cols = board[0].length;
-    if (0 <= row && row < rows && 0 <= col && col < cols && board[row][col] == O_CELL) {
-      board[row][col] = BORDER_O_CELL;
-      queue.add(new Cell(row, col));
+    if (
+      row < 0 || row >= board.length ||
+        col < 0 || col >= board[row].length ||
+        board[row][col] != O_CELL) {
+      return;
     }
+
+    board[row][col] = BORDER_O_CELL;
+    queue.add(new Cell(row, col));
   }
 
   public void solve(char[][] board) {
