@@ -9,7 +9,8 @@ public class Solution {
   private static final char O_CELL = 'O';
 
   private static final int[][] DIRS = {
-    {-1, 0}, {1, 0}, {0, -1}, {0, 1}
+    {-1, 0}, {1, 0},
+    {0, -1}, {0, 1}
   };
 
   private void flip(int row, int col, char[][] board, Deque<Cell> queue) {
