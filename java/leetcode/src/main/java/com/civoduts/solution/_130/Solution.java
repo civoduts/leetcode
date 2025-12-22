@@ -4,15 +4,18 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class Solution {
-  private static final char CHANGED = '#', X = 'X', O = 'O';
+  private static final char X_CELL = 'X';
+  private static final char BORDER_O_CELL = '#';
+  private static final char O_CELL = 'O';
+
   private static final int[][] DIRS = {
     {-1, 0}, {1, 0}, {0, -1}, {0, 1}
   };
 
   private void flip(int row, int col, char[][] board, Deque<Cell> queue) {
     int rows = board.length, cols = board[0].length;
-    if (0 <= row && row < rows && 0 <= col && col < cols && board[row][col] == O) {
-      board[row][col] = CHANGED;
+    if (0 <= row && row < rows && 0 <= col && col < cols && board[row][col] == O_CELL) {
+      board[row][col] = BORDER_O_CELL;
       queue.add(new Cell(row, col));
     }
   }
@@ -45,10 +48,10 @@ public class Solution {
 
     for (int row = 0; row < rows; row++) {
       for (int col = 0; col < cols; col++) {
-        if (board[row][col] == O)
-          board[row][col] = X;
-        else if (board[row][col] == CHANGED) {
-          board[row][col] = O;
+        if (board[row][col] == O_CELL)
+          board[row][col] = X_CELL;
+        else if (board[row][col] == BORDER_O_CELL) {
+          board[row][col] = O_CELL;
         }
       }
     }
