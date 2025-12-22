@@ -53,11 +53,12 @@ public class Solution {
 
     while (!queue.isEmpty()) {
       Cell curr = queue.poll();
-      for (int[] d : DIRS) {
-        int nr = curr.row + d[0];
-        int nc = curr.col + d[1];
+      for (int[] dir : DIRS) {
+        int dr = dir[0], dc = dir[1];
+        int nxtRow = curr.row + dr;
+        int nxtCol = curr.col + dc;
 
-        mark(nr, nc, board, queue);
+        mark(nxtRow, nxtCol, board, queue);
       }
     }
 
