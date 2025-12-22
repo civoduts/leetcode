@@ -4,6 +4,16 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class Solution {
+  static class Cell {
+    final int row;
+    final int col;
+
+    public Cell(int row, int col) {
+      this.row = row;
+      this.col = col;
+    }
+  }
+
   private static final char X_CELL = 'X';
   private static final char BORDER_O_CELL = '#';
   private static final char O_CELL = 'O';
@@ -44,8 +54,8 @@ public class Solution {
     while (!queue.isEmpty()) {
       Cell curr = queue.poll();
       for (int[] d : DIRS) {
-        int nr = curr.row() + d[0];
-        int nc = curr.col() + d[1];
+        int nr = curr.row + d[0];
+        int nc = curr.col + d[1];
 
         mark(nr, nc, board, queue);
       }
@@ -61,7 +71,4 @@ public class Solution {
       }
     }
   }
-}
-
-record Cell(int row, int col) {
 }
