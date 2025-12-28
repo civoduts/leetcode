@@ -35,8 +35,6 @@ public class Solution {
       }
     }
 
-    if (fresh == 0) return 0;
-
     int minutes = 0;
     while (fresh > 0 && !queue.isEmpty()) {
       int level = queue.size();
@@ -62,4 +60,3 @@ public class Solution {
     }
   }
 }
-
