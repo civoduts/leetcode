@@ -38,7 +38,7 @@ public class Solution {
     int minutes = 0;
     while (fresh > 0 && !queue.isEmpty()) {
       int level = queue.size();
-      while (level-- > 0) {
+      for (int i = 0; i < level; i++) {
         Cell curr = queue.poll();
         for (int[] d : DIRS) {
           int nr = curr.row + d[0], nc = curr.col + d[1];
