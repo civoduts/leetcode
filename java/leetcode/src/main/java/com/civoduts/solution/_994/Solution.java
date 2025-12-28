@@ -10,7 +10,7 @@ public class Solution {
     {-1, 0}, {1, 0}, {0, -1}, {0, 1}
   };
 
-  private boolean infect(int r, int c, int[][] grid, Deque<Cell> queue) {
+  private boolean infect(int r, int c, int[][] grid, Queue<Cell> queue) {
     final int rows = grid.length, cols = grid[0].length;
     if (0 <= r && r < rows && 0 <= c && c < cols && grid[r][c] == FRESH_ORANGE) {
       grid[r][c] = ROTTEN_ORANGE;
