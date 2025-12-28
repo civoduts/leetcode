@@ -17,7 +17,7 @@ public class Solution2 {
     ListNode dummy = new ListNode(0, head);
     ListNode prev = dummy;
 
-    while (steps-- > 0) {
+    for (int i = 0; i < steps; i++) {
       prev = prev.next;
     }
     prev.next = prev.next.next;
