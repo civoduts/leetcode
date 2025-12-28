@@ -1,7 +1,6 @@
 package com.civoduts.solution._994;
 
 import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.Queue;
 
 public class Solution {
@@ -10,7 +9,7 @@ public class Solution {
     {-1, 0}, {1, 0}, {0, -1}, {0, 1}
   };
 
-  private boolean infect(int r, int c, int[][] grid, Queue<Cell> queue) {
+  private boolean canInfect(int r, int c, int[][] grid, Queue<Cell> queue) {
     final int rows = grid.length, cols = grid[0].length;
     if (0 <= r && r < rows && 0 <= c && c < cols && grid[r][c] == FRESH_ORANGE) {
       grid[r][c] = ROTTEN_ORANGE;
@@ -42,7 +41,7 @@ public class Solution {
         Cell curr = queue.poll();
         for (int[] d : DIRS) {
           int nr = curr.row + d[0], nc = curr.col + d[1];
-          if (infect(nr, nc, grid, queue)) fresh--;
+          if (canInfect(nr, nc, grid, queue)) fresh--;
         }
       }
       minutes += 1;
