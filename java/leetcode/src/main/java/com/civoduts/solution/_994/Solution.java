@@ -2,6 +2,7 @@ package com.civoduts.solution._994;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Queue;
 
 public class Solution {
   private static final int EMPTY = 0, FRESH_ORANGE = 1, ROTTEN_ORANGE = 2;
@@ -24,7 +25,7 @@ public class Solution {
       return -1;
 
     final int rows = grid.length, cols = grid[0].length;
-    Deque<Cell> queue = new ArrayDeque<>();
+    Queue<Cell> queue = new ArrayDeque<>();
 
     int fresh = 0;
     for (int r = 0; r < rows; r++) {
