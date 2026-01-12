@@ -1,4 +1,4 @@
-package com.civoduts.practice;
+package com.civoduts.solution._20;
 
 import java.util.Stack;
 
